@@ -15,6 +15,7 @@ Board TicTacToe::play( Player& p1,  Player& p2) {
     p1.setChar('X');
     p2.setChar('O');
     m_turn=true;
+    m_winner=&p2;
     while(!m_win){
         if(m_turn){
             try {
