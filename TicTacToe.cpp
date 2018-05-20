@@ -17,6 +17,7 @@ Board TicTacToe::play( Player& p1,  Player& p2) {
     m_turn=true;
     m_winner=&p2;
     while(!m_win){
+        if(isfull())return m_board;
         if(m_turn){
             try {
                 vector<int> v;
@@ -124,5 +125,12 @@ Board TicTacToe::board() const{
 }
 const Player& TicTacToe::winner() const {
     return *m_winner;
+}
+bool TicTacToe::isfull(){
+    for (int i = 0; i <m_board.size() ; ++i) {
+        for (int j = 0; j <m_board.size() ; ++j) {
+            if(m_board[{i,j}].get_p()=='.')return false;
+        }
+    }
 }
 #include "TicTacToe.h"
