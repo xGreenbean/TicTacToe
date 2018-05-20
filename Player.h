@@ -4,7 +4,6 @@
 
 #ifndef CPP_6_PLAYER_H
 #define CPP_6_PLAYER_H
-#include "Coordinate.h"
 #include "Board.h"
 class Player{
 public:

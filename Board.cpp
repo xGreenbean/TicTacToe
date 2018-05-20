@@ -94,7 +94,7 @@ void Board::init_Board(int dim) {
         m_board[i] = new Piece[m_size];
     }
 }
-ostream& operator<< (ostream& os, Board& b)const{
+ostream& operator<< (ostream& os, Board& b){
     for (int i = 0; i <b.m_size ; ++i) {
         for (int j = 0; j <b.m_size ; ++j) {
             os<<(b.m_board[i][j].get_p());
