@@ -1,11 +1,7 @@
-//
-// Created by ehud on 19/05/18.
-//
-
-#ifndef CPP_6_DUMMYPLAYERS_H
-#define CPP_6_DUMMYPLAYERS_H
-#pragma once
 #include "Player.h"
+
+
+
 /*
 	This player scans the board looping on x then on y,
 	and plays on the first empty cell.
@@ -41,7 +37,7 @@ public:
 class IllegalPlayer: public Player {
 public:
     const string name() const override { return "YXPlayer"; }
-    const  vector<int> play(const Board& board) override;
+    const vector<int> play(const Board& board) override;
 };
 
 
@@ -54,6 +50,3 @@ public:
     const string name() const override { return "YXPlayer"; }
     const vector<int> play(const Board& board) override;
 };
-
-
-#endif //CPP_6_DUMMYPLAYERS_H

@@ -1,11 +1,13 @@
-
+#pragma once
 #include "DummyPlayers.h"
+
+
 const vector<int> XYPlayer::play(const Board& board) {
-    for (int x=0; x<board.size(); ++x) {
-        for (int y=0; y<board.size(); ++y) {
-            const vector<int> v{x,y};
-            if (board[v]=='.') {
-                return v;
+    for (uint x=0; x<board.size(); ++x) {
+        for (uint y=0; y<board.size(); ++y) {
+            vector<int> c{x,y};
+            if (board[c]=='.') {
+                return c;
             }
         }
     }
@@ -14,11 +16,11 @@ const vector<int> XYPlayer::play(const Board& board) {
 
 
 const vector<int> YXPlayer::play(const Board& board) {
-    for (int y=0; y<board.size(); ++y) {
-        for (int x=0; x<board.size(); ++x) {
-            vector<int> v{x,y};
-            if (board[v]=='.') {
-                return v;
+    for (uint y=0; y<board.size(); ++y) {
+        for (uint x=0; x<board.size(); ++x) {
+            vector<int> c{x,y};
+            if (board[c]=='.') {
+                return c;
             }
         }
     }
@@ -34,11 +36,11 @@ const vector<int> IllegalPlayer::play(const Board& board) {
     char charOfOtherPlayer = (
             myChar=='X'? 'O': 'X'
     );
-    for (int y=0; y<board.size(); ++y) {
-        for (int x=0; x<board.size(); ++x) {
-            vector<int> v{x,y};
-            if (board[v]==charOfOtherPlayer) {
-                return v;
+    for (uint y=0; y<board.size(); ++y) {
+        for (uint x=0; x<board.size(); ++x) {
+            vector<int> c{x,y};
+            if (board[c]==charOfOtherPlayer) {
+                return c;
             }
         }
     }

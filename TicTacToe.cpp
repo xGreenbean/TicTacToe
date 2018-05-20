@@ -20,7 +20,7 @@ Board TicTacToe::play( Player& p1,  Player& p2) {
             try {
                 vector<int> v;
                 v = p1.play(m_board);
-                if (m_board[v] != p1.myChar)
+                if (m_board[v] == p2.myChar)
                     throw std::string("Illegal Player");
                 m_board[v]='X';
                 check_Board(v);
@@ -36,7 +36,7 @@ Board TicTacToe::play( Player& p1,  Player& p2) {
             try {
                 vector<int> v;
                 v = p2.play(m_board);
-                if (m_board[v] != p2.myChar)
+                if (m_board[v] == p1.myChar)
                     throw std::string("Illegal Player");
                 m_board[v]='O';
                 check_Board(v);
@@ -70,7 +70,6 @@ void  TicTacToe::check_Board(vector<int> vector1){
     for (int i = 0; i <m_board.size(); i++) {
         vector <int> v={vector1.at(0),vector1.at(1)};
         v.at(0)=i;
-        v.at(1)=0;
         if(move==m_board[v].get_p())counter++;
     }
 //    cout<<counter<<endl;
@@ -84,7 +83,6 @@ void  TicTacToe::check_Board(vector<int> vector1){
     for (int i = 0; i <m_board.size(); i++) {
         vector <int> v={vector1.at(0),vector1.at(1)};
         v.at(1)=i;
-        v.at(0)=0;
         if(move==m_board[v].get_p())counter++;
     }
 //    cout<<counter<<endl;
