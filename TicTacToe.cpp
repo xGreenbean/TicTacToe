@@ -17,7 +17,6 @@ Board TicTacToe::play( Player& p1,  Player& p2) {
     m_turn=true;
     m_winner=&p2;
     while(!m_win){
-        if(isfull())return m_board;
         if(m_turn){
             try {
                 vector<int> v;
