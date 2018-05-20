@@ -16,7 +16,7 @@ public:
      TicTacToe(int);
     Board play( Player&, Player&);
     void check_Board(vector<int>);
-    string board()const;
+    Board board()const;
     const Player& winner() const;
 };
 

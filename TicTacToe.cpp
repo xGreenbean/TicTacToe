@@ -117,15 +117,9 @@ void  TicTacToe::check_Board(vector<int> vector1){
     }
     m_turn=!m_turn;
 }
-string TicTacToe::board() const{
-    string s;
-    for (int i = 0; i <m_board.size() ; i++) {
-        for (int j = 0; j <m_board.size() ; j++) {
-            s+=(m_board[{i,j}].get_p());
-        }
-        s+='\n';
-    }
-    return s;
+Board TicTacToe::board() const{
+
+    return m_board;
 }
 const Player& TicTacToe::winner() const {
     return *m_winner;
