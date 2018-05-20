@@ -100,6 +100,6 @@ ostream& operator<< (ostream& os,const Board& b){
             os<<(b.m_board[i][j].get_p());
         }
         os<<'\n';
-    }os<<endl;
+    }
     return os;
 }
