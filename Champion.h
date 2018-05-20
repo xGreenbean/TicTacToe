@@ -8,7 +8,7 @@
 
 class Champion : public Player{
 public:
-    const string name() const override { return "ehud"; }
+    const string name() const override { return "Ehud and Saimon"; }
     const vector<int> play(const Board &board)override;
 
 };
