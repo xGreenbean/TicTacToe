@@ -13,7 +13,7 @@ using namespace std;
 class Board {
 public:
     Board(){};
-    friend ostream& operator<< (ostream& os,  Board& b);
+    friend ostream& operator<< (ostream& os,const  Board& b);
     Board& operator=(const Board& b);
     Board(const Board& b);
     Board& operator=(char c);
