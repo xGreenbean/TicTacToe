@@ -18,7 +18,7 @@ public:
     void check_Board(vector<int>);
     Board board()const;
     const Player& winner() const;
-    bool isfull();
+    bool isfull()const;
 };
 
 
