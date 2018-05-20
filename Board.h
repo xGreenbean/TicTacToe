@@ -10,6 +10,7 @@ using namespace std;
 #include "vector"
 #include "IllegalCoordinateException.h"
 #include "IllegalCharException.h"
+typedef std::vector<int> Coordinate;
 class Board {
 public:
     Board(){};
