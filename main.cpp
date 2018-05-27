@@ -9,6 +9,7 @@
 
 int main() {
    Board board(3);
+    cin>>board;
     board.draw(800);
     return 0;
 }

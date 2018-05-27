@@ -119,6 +119,10 @@ ostream& operator<< (ostream& os,const Board& b){
     return os;
 }
 string Board::draw(int n) {
+    const int dimx = n, dimy = n;
+    ofstream imageFile("cpp.ppm", ios::out | ios::binary);
+    imageFile << "P6" << endl << dimx <<" " << dimy << endl << 255 << endl;
+
     RGB ** matrix=new RGB*[this->size()];
     for (int k = 0; k <this->size() ; ++k) {
          matrix[k]=new RGB[this->size()];
@@ -126,36 +130,23 @@ string Board::draw(int n) {
     for (int l = 0; l <this->size() ; ++l) {
         for (int i = 0; i <this->size() ; ++i) {
             if(m_board[i][l].get_p()=='X')drawX(i,l);
-            if(m_board[i][l].get_p()=='O')drawO(i,l);
-            if(m_board[i][l].get_p()=='.')drawNull(i,l);
+//            if(m_board[i][l].get_p()=='O')drawO(i,l);
+//            if(m_board[i][l].get_p()=='.')drawNull(i,l);
         }
     }
+    imageFile.write(reinterpret_cast<char*>(&image), 3*dimx*dimy);
+    imageFile.close();
 
-    const int dimx = n, dimy = n;
-    int bound=(((double) n-1)/(double)this->size());
-        ofstream imageFile("/home/ehud/Desktop/myimage1.ppm");
-        imageFile << "P6" << endl << dimx <<" " << dimy << endl << 255 << endl;
-        //boundries
-                for (int j = 0; j < dimy; ++j)  {
-            for (int i = 0; i < dimx; ++i) {
-                char red =255;
-                if(i%bound==0||j%bound==0)red=0;
-                imageFile << red << red << red;
-            }
-        }
-        imageFile.close();
-    return "";
 }
-void drawX(int x1,int y1,RGB** matrix){
+void Board::drawX(int x1,int y1,RGB** matrix){
     int bound=(((double) n-1)/(double)this->size());
-    matrix[bound*x1][bound*y1]
-    for (int i = bound*(x1); i <bound*(x1+1); ++i) {
-        for (int j = bound*(y1); j <bound*(y1+1) ; ++j) {
-            if (i==j){
-                matrix[i][j].blue=255;
-                matrix[i][j].red=255;
-                matrix[i][j].green=255;
-            }
-        }
+    for (int i = 0; i <bound; ++i) {
+        matrix[x1+i][y1+1].green=0;
+        matrix[x1+i][y1+1].red=0;
+        matrix[x1+i][y1+1].blue=0;
+        matrix[x1+i][y1+bound-i].blue=0;
+        matrix[x1+i][y1+bound-i].green=0;
+        matrix[x1+i][y1+bound-i].red=0;
+
     }
 }

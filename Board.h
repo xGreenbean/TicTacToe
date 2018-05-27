@@ -27,6 +27,7 @@ public:
     void fill(char c);
     ~Board();
     string draw(int n);
+    void drawX(int ,int);
 private:
     int m_size;
     Piece** m_board;
