@@ -10,11 +10,13 @@ using namespace std;
 #include "vector"
 #include "IllegalCoordinateException.h"
 #include "IllegalCharException.h"
+#include <fstream>
 typedef std::vector<int> Coordinate;
 class Board {
 public:
     Board(){};
     friend ostream& operator<< (ostream& os,const  Board& b);
+    friend istream &operator>>(istream&,Board& b);
     Board& operator=(const Board& b);
     Board(const Board& b);
     Board& operator=(char c);
@@ -24,6 +26,7 @@ public:
     int size()const;
     void fill(char c);
     ~Board();
+    string draw(int n);
 private:
     int m_size;
     Piece** m_board;

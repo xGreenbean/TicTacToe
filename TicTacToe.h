@@ -6,7 +6,9 @@
 #define CPP_6_TICTACTOE_H
 #include "Board.h"
 #include "Player.h"
-
+/**
+ * this class is a TicTacToe game
+ */
 class TicTacToe {
     Board m_board;
     bool m_win;

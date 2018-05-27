@@ -16,7 +16,9 @@ public:
     Piece();
     Piece(char c);
     friend ostream& operator << (ostream& os, Piece& p);
-     operator char() const ;
+    friend istream& operator >> (istream& is, Piece& p);
+
+    operator char() const ;
 //    friend char operator=(char c,Piece& p);
 private:
     char p;

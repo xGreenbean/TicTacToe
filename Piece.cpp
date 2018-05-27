@@ -33,6 +33,13 @@ char Piece::get_p()const {
 ostream& operator<<(ostream &os, Piece &p) {
     return os<<p.get_p();
 }
+istream& operator>>(istream &is, Piece &p) {
+    char t_p;
+    is>>t_p;
+    p.set_p(t_p);
+
+
+}
 /**
  * sets p to c, throws exception if char is illegal.
  * @throws IllegalCharException
