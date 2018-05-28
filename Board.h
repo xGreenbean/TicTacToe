@@ -12,6 +12,16 @@ using namespace std;
 #include "IllegalCharException.h"
 #include <fstream>
 typedef std::vector<int> Coordinate;
+struct RGB {
+    uint8_t red, green, blue;
+public:
+    RGB() {
+        red=255;
+        blue=255;
+        green=255;
+    }
+    RGB(uint8_t red, uint8_t green, uint8_t blue): red(red), green(green), blue(blue) {}
+};
 class Board {
 public:
     Board(){};
@@ -27,8 +37,9 @@ public:
     void fill(char c);
     ~Board();
     string draw(int n);
-    void drawX(int ,int);
-private:
+    void drawX(int x1,int y1,RGB* matrix,int n);
+    void whiten(RGB* matrix,int n);
+        private:
     int m_size;
     Piece** m_board;
 };
