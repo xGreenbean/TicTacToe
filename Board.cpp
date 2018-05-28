@@ -123,7 +123,7 @@ string Board::draw(int n) {
     whiten(matrix, n);
     for (int l = 0; l <this->size() ; l++) {
         for (int i = 0; i <this->size() ; i++) {
-               if(m_board[i][l].get_p()=='.')drawX(l,i,matrix,n);
+               if(m_board[i][l].get_p()=='X')drawX(l,i,matrix,n);
         }
    }
     imageFile.write(reinterpret_cast<char*>(matrix), n*n*3);
@@ -132,28 +132,32 @@ string Board::draw(int n) {
 }
 void Board::drawX(int x1,int y1,RGB* matrix,int n){
     int bound=(((double) n-1)/(double)this->size());
-    for (int i = 0; i <bound; ++i) {
-                matrix[n*(i+x1*bound)+(i+(y1*bound))].green = 0;
-                matrix[n*(i+x1*bound)+(i+(y1*bound))].red = 0;
-                matrix[n*(i+x1*bound)+(i+(y1*bound))].blue = 0;
-                matrix[n*((bound)+x1*bound)-n*(i)+(i+(y1*bound))].green = 0;
-                matrix[n*((bound)+x1*bound)-n*(i)+(i+(y1*bound))].red = 0;
-                matrix[n*((bound)+x1*bound)-n*(i)+(i+(y1*bound))].blue = 0;
+    int thicken=bound*0.05;
+
+    for (int i = (bound*0.10); i <(bound*0.90); ++i) {
+        for (int j = 0; j <thicken ; ++j) {
+            matrix[n*(i+x1*bound)+(i+(y1*bound))+j].green = 255;
+            matrix[n*(i+x1*bound)+(i+(y1*bound))+j].red = 153;
+            matrix[n*(i+x1*bound)+(i+(y1*bound))+j].blue = 51;
+            matrix[n*((bound)+x1*bound)-n*(i)+(i+(y1*bound))+j].green = 255;
+            matrix[n*((bound)+x1*bound)-n*(i)+(i+(y1*bound))+j].red = 153;
+            matrix[n*((bound)+x1*bound)-n*(i)+(i+(y1*bound))+j].blue = 51;
+        }
     }
 }
 void Board::whiten(RGB* matrix,int n){
     int bound=(((double) n-1)/(double)this->size());
-    for (int i = 0; i <n ; ++i) {
-        for (int j = 0; j <n ; ++j) {
-            if(i%bound==0||j%bound==0){
-                matrix[n*j+i].blue=0;
-                matrix[n*j+i].green=0;
-                matrix[n*j+i].red=0;
-            }else{
-                matrix[n*j+i].blue=255;
-                matrix[n*j+i].green=255;
-                matrix[n*j+i].red=255;
+    int thicken=(bound*0.02);
+    for (int i = n*0.02 ; i <n*0.98 ; ++i) {
+        for (int j = n*0.02; j <n*0.98 ; ++j) {
+            for (int k = 0; k <thicken; ++k) {
+                if(i%bound==0||j%bound==0){
+                    matrix[(n)*(j+k)+i+k].blue=255;
+                    matrix[(n)*(j+k)+i+k].green=255;
+                    matrix[(n)*(j+k)+i+k].red=255;
+                }
             }
+
         }
     }
 }

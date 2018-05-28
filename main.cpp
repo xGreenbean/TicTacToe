@@ -8,7 +8,7 @@
 
 
 int main() {
-   Board board(10);
-    board.draw(2000);
+   Board board(7);
+    board.draw(800);
     return 0;
 }

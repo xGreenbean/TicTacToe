@@ -16,9 +16,9 @@ struct RGB {
     uint8_t red, green, blue;
 public:
     RGB() {
-        red=255;
-        blue=255;
-        green=255;
+        red=0;
+        blue=0;
+        green=0;
     }
     RGB(uint8_t red, uint8_t green, uint8_t blue): red(red), green(green), blue(blue) {}
 };
