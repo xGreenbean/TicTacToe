@@ -102,9 +102,7 @@ void Board::init_Board(int dim) {
 istream& operator>>(istream& is,Board& b){
     string str;
     int dim = 0, raw = 0;
-    cout<<"hi"<<endl;
     is >> str;
-    cout<<"hi"<<endl;
     dim = str.length();
     b.init_Board(dim);
     while (is)
