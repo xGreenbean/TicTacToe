@@ -1,7 +1,7 @@
 //
 // Created by ehud on 29/04/18.
 //
-
+#include <sys/stat.h>
 #ifndef CPP_6_BOARD_H
 #define CPP_6_BOARD_H
 using namespace std;

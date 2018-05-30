@@ -8,8 +8,9 @@
 
 
 int main() {
-   Board board(3);
-   board.fill('X');
-    board.draw(800);
-    return 0;
+    Board board(30);
+    board.fill('.');
+//    cin >> board;
+    string filename = board.draw(1000);
+    cout << filename << endl;
 }

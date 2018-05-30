@@ -25,7 +25,7 @@ class Draw {
 public:
     void drawX();
     void drawY();
-    Draw(int n,Board board);
+    Draw(int n,Board board,string);
     ~Draw();
     string draw();
     void drawX(int x1,int y1);
@@ -33,6 +33,7 @@ public:
     void border();
 
 private:
+    string filename;
     RGB* matrix;
     Board board;
     int size;

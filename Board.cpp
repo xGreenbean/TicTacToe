@@ -4,6 +4,7 @@
 #include "Board.h"
 #include "Draw.h"
 #include <math.h>
+#include <string.h>
 /**
  * class builder, initializes a size*size board with '.'.
  * @param s - board dimension
@@ -99,18 +100,21 @@ void Board::init_Board(int dim) {
     }
 }
 istream& operator>>(istream& is,Board& b){
-    string s;
-    is>>s;
-    if(s.length()!=b.size()){
-        b.~Board();
-        b=*new Board(s.length());
+    string str;
+    int dim = 0, raw = 0;
+    cout<<"hi"<<endl;
+    is >> str;
+    cout<<"hi"<<endl;
+    dim = str.length();
+    b.init_Board(dim);
+    while (is)
+    {
+        for (int j = 0; j < dim; j++)
+            b[{raw, j}] = str[j];
+        is >> str;
+        raw++;
     }
-    for (int k = 0; k <s.length() ; ++k) {
-        for (int i = 0; i <s.length(); ++i) {
-            is>>b[{k,i}];
-        }
-    }
-
+    return is;
 }
 
 ostream& operator<< (ostream& os,const Board& b){
@@ -123,7 +127,18 @@ ostream& operator<< (ostream& os,const Board& b){
     return os;
 }
 string Board::draw(int n) {
-    Draw d=Draw(n,*this);
+    string filename="Board";
+        struct stat buffer;
+    string file=filename+".ppm";
+    int i=0;
+    while(stat (file.c_str(), &buffer) == 0){
+        file=filename+"_"+to_string(i)+".ppm";
+        i++;
+    }
+    filename=file;
+
+
+    Draw d=Draw(n,*this,file);
     d.draw();
-    return "";
+    return filename;
 }
