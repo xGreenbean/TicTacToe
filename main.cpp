@@ -8,7 +8,8 @@
 
 
 int main() {
-   Board board(7);
+   Board board(3);
+   board.fill('X');
     board.draw(800);
     return 0;
 }

@@ -2,6 +2,8 @@
 // Created by ehud on 29/04/18.
 //
 #include "Board.h"
+#include "Draw.h"
+#include <math.h>
 /**
  * class builder, initializes a size*size board with '.'.
  * @param s - board dimension
@@ -97,11 +99,18 @@ void Board::init_Board(int dim) {
     }
 }
 istream& operator>>(istream& is,Board& b){
-    for (int i = 0; i <b.size() ; ++i) {
-        for (int j = 0; j <b.size() ; ++j) {
-            is>>b[{i,j}];
+    string s;
+    is>>s;
+    if(s.length()!=b.size()){
+        b.~Board();
+        b=*new Board(s.length());
+    }
+    for (int k = 0; k <s.length() ; ++k) {
+        for (int i = 0; i <s.length(); ++i) {
+            is>>b[{k,i}];
         }
     }
+
 }
 
 ostream& operator<< (ostream& os,const Board& b){
@@ -114,50 +123,7 @@ ostream& operator<< (ostream& os,const Board& b){
     return os;
 }
 string Board::draw(int n) {
-    int dimx = n, dimy = n;
-    ofstream imageFile("/home/ehud/Desktop/myimage1", ios::out | ios::binary);
-    imageFile << "P6" << endl << dimx <<" " << dimy << endl << 255 << endl;
-
-    RGB* matrix=new RGB[n*n];
-
-    whiten(matrix, n);
-    for (int l = 0; l <this->size() ; l++) {
-        for (int i = 0; i <this->size() ; i++) {
-               if(m_board[i][l].get_p()=='X')drawX(l,i,matrix,n);
-        }
-   }
-    imageFile.write(reinterpret_cast<char*>(matrix), n*n*3);
-    imageFile.close();
+    Draw d=Draw(n,*this);
+    d.draw();
     return "";
-}
-void Board::drawX(int x1,int y1,RGB* matrix,int n){
-    int bound=(((double) n-1)/(double)this->size());
-    int thicken=bound*0.05;
-
-    for (int i = (bound*0.10); i <(bound*0.90); ++i) {
-        for (int j = 0; j <thicken ; ++j) {
-            matrix[n*(i+x1*bound)+(i+(y1*bound))+j].green = 255;
-            matrix[n*(i+x1*bound)+(i+(y1*bound))+j].red = 153;
-            matrix[n*(i+x1*bound)+(i+(y1*bound))+j].blue = 51;
-            matrix[n*((bound)+x1*bound)-n*(i)+(i+(y1*bound))+j].green = 255;
-            matrix[n*((bound)+x1*bound)-n*(i)+(i+(y1*bound))+j].red = 153;
-            matrix[n*((bound)+x1*bound)-n*(i)+(i+(y1*bound))+j].blue = 51;
-        }
-    }
-}
-void Board::whiten(RGB* matrix,int n){
-    int bound=(((double) n-1)/(double)this->size());
-    int thicken=(bound*0.02);
-    for (int i = n*0.02 ; i <n*0.98 ; ++i) {
-        for (int j = n*0.02; j <n*0.98 ; ++j) {
-            for (int k = 0; k <thicken; ++k) {
-                if(i%bound==0||j%bound==0){
-                    matrix[(n)*(j+k)+i+k].blue=255;
-                    matrix[(n)*(j+k)+i+k].green=255;
-                    matrix[(n)*(j+k)+i+k].red=255;
-                }
-            }
-
-        }
-    }
 }
