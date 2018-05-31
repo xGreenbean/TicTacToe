@@ -11,6 +11,9 @@
 #include "IllegalCharException.h"
 #include <fstream>
 #include "Board.h"
+/**
+ * RGB struct for holdiing the RGB pixels
+ */
 struct RGB {
     uint8_t red, green, blue;
 public:
@@ -37,6 +40,7 @@ private:
     RGB* matrix;
     Board board;
     int size;
+    //board bounds (length&&height of a panel)
     int bound;
 
 };

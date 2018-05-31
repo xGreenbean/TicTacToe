@@ -4,7 +4,9 @@
 
 #include "Draw.h"
 #include <math.h>
-
+/*
+ * builder, board to draw , n is size of the image, file name - name of the file.
+ */
 Draw::Draw(int n, Board board,string filename) {
     this->size=n;
     this->board=board;
@@ -15,12 +17,16 @@ Draw::Draw(int n, Board board,string filename) {
 Draw::~Draw(){
     delete [] matrix;
 }
+/**
+ * creates an image
+ * @return
+ */
 string Draw::draw() {
     ofstream imageFile(filename, ios::out | ios::binary);
     imageFile << "P6" << endl << size <<" " << size << endl << 255 << endl;
-
+    //draws the border of the board.
     Draw::border();
-
+    //draw the board state
     for (int l = 0; l <board.size() ; l++) {
         for (int i = 0; i <board.size() ; i++) {
             if(board[{i,l}].get_p()=='X')drawX(l,i);
@@ -32,7 +38,10 @@ string Draw::draw() {
     return "";
 }
 void Draw::drawX(int x1,int y1){
+    //thicken-by what % we want to thicken the drawing lines in relation to bound
     int thicken=bound*0.05;
+    //we will shrink the X alittle bit so its more pretty
+    //this is why we dont start at 0 and and at bound-1
     for (int i = (bound*0.10); i <(bound*0.90); ++i) {
         for (int j = 0; j <thicken ; ++j) {
             matrix[size*(i+x1*bound)+(i+(y1*bound))+j].green = 153;
@@ -45,10 +54,13 @@ void Draw::drawX(int x1,int y1){
     }
 }
 void Draw::drawO(int x1,int y1){
+    //thicken-by what % we want to thicken the drawing lines in relation to bound
     int thicken=(bound*0.04);
     int circle_radius=bound;
     int xmid = bound/2.0;
     int ymid = bound/2.0;
+    //we will shrink the O alittle bit so its more pretty
+    //this is why we shrink the radius, we thicken by changing the radius with thicken.
     for (int i = 0; i <bound ; ++i) {
         for (int j = 0; j <bound ; ++j) {
             int tempx = i;
@@ -64,6 +76,7 @@ void Draw::drawO(int x1,int y1){
     }
 }
 void Draw::border(){
+    //draws the board border
     int thicken=(bound*0.02)+1;
     for (int i = size*0.02 ; i <size*0.98 ; ++i) {
         for (int j = size*0.02; j <size*0.98 ; ++j) {

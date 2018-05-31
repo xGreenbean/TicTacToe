@@ -99,6 +99,7 @@ void Board::init_Board(int dim) {
         m_board[i] = new Piece[m_size];
     }
 }
+/* took some inspiration from Samuel Bismuth*/
 istream& operator>>(istream& is,Board& b){
     string str;
     int dim = 0, raw = 0;
@@ -124,18 +125,23 @@ ostream& operator<< (ostream& os,const Board& b){
     }
     return os;
 }
+/*
+ * Draws a picture of a board of n*n pixels
+ */
 string Board::draw(int n) {
+    //making a new file every time.
     string filename="Board";
-        struct stat buffer;
+    struct stat buffer;
     string file=filename+".ppm";
     int i=0;
+    //check for existing files
     while(stat (file.c_str(), &buffer) == 0){
         file=filename+"_"+to_string(i)+".ppm";
         i++;
     }
     filename=file;
 
-
+    //use the Draw class to draw the board
     Draw d=Draw(n,*this,file);
     d.draw();
     return filename;
