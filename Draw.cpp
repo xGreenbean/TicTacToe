@@ -7,7 +7,7 @@
 /*
  * builder, board to draw , n is size of the image, file name - name of the file.
  */
-Draw::Draw(int n, Board board,string filename) {
+Draw::Draw(int n, Board& board,string filename) {
     this->size=n;
     this->board=board;
     this->bound=(((double) n-1)/(double)board.size());

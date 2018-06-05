@@ -12,18 +12,14 @@
 
 
 Board::Board(int s) {
-
-    m_size = s;
-    m_board = new Piece*[m_size];
-    for (int i = 0; i < m_size; ++i) {
-        m_board[i] = new Piece[m_size];
-    }
+    init_Board(s);
 }
 /**
  * copy constructor, deep copy.
  * @param b - Board copied
  */
 Board::Board(const Board &b) {
+   
     m_size=b.m_size;
     m_board=new Piece*[m_size];
     for (int i = 0; i < m_size; ++i) {
@@ -51,7 +47,6 @@ Board& Board::operator=( char c) {
  * @return
  */
 Board& Board::operator=(const Board& b) {
-    this->~Board();
     m_size=b.m_size;
     this->m_board=new Piece*[m_size];
     for (int i = 0; i < m_size; ++i) {
@@ -91,6 +86,7 @@ Board::~Board(){
     for (int i = 0; i <m_size ; ++i) {
             delete[] m_board[i];
     }
+    delete [] m_board;
 
 }
 void Board::init_Board(int dim) {
@@ -102,7 +98,7 @@ void Board::init_Board(int dim) {
 }
 /* took some inspiration from Samuel Bismuth*/
 istream& operator>>(istream& is,Board& b){
-    if(b.m_board==NULL)b.~Board();
+
     string str;
     int dim = 0, raw = 0;
     is >> str;
@@ -118,7 +114,7 @@ istream& operator>>(istream& is,Board& b){
     return is;
 }
 
-ostream& operator<< (ostream& os,const Board& b){
+ostream& operator<< (ostream& os, Board& b){
     for (int i = 0; i <b.m_size ; ++i) {
         for (int j = 0; j <b.m_size ; ++j) {
             os<<(b.m_board[i][j].get_p());

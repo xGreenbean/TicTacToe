@@ -16,7 +16,7 @@ typedef std::vector<int> Coordinate;
 class Board {
 public:
     Board(){};
-    friend ostream& operator<< (ostream& os,const  Board& b);
+    friend ostream& operator<< (ostream& os,  Board& b);
     friend istream &operator>>(istream&,Board& b);
     Board& operator=(const Board& b);
     Board(const Board& b);

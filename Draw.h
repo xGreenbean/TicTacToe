@@ -28,7 +28,7 @@ class Draw {
 public:
     void drawX();
     void drawY();
-    Draw(int n,Board board,string);
+    Draw(int n,Board& board,string);
     ~Draw();
     string draw();
     void drawX(int x1,int y1);
