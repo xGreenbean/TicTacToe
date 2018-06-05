@@ -47,6 +47,7 @@ Board& Board::operator=( char c) {
  * @return
  */
 Board& Board::operator=(const Board& b) {
+    this->~Board();
     m_size=b.m_size;
     this->m_board=new Piece*[m_size];
     for (int i = 0; i < m_size; ++i) {
