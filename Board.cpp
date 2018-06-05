@@ -102,6 +102,7 @@ void Board::init_Board(int dim) {
 }
 /* took some inspiration from Samuel Bismuth*/
 istream& operator>>(istream& is,Board& b){
+    if(b.m_board==NULL)b.~Board();
     string str;
     int dim = 0, raw = 0;
     is >> str;
